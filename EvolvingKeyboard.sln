@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvolvingKeyboard", "EvolvingKeyboard\EvolvingKeyboard.csproj", "{3AA2EA66-7F80-4DBA-9921-8CEDC428CA04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AA2EA66-7F80-4DBA-9921-8CEDC428CA04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AA2EA66-7F80-4DBA-9921-8CEDC428CA04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AA2EA66-7F80-4DBA-9921-8CEDC428CA04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AA2EA66-7F80-4DBA-9921-8CEDC428CA04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
