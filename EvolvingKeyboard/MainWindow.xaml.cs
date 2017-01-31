@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EvolvingKeyboard.Keyboard;
+using EvolvingKeyboard.StochasticEvolution;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -27,72 +29,32 @@ namespace EvolvingKeyboard
         int intoSentence = 0;
         Random rr = new Random();
         String[] sentences;
-        List<Letter> Letters;
-        WriteableBitmap _wb;
+
         String lastLetter = null;
         List<Point> savedList;
-        double lastScore = 0.0;
-        double currentScore = 0.0;
-        double temperature = 150.0;
 
-        public class Letter
-        {
-            public Letter(Point p, uint color, Grid g, String l)
-            {
-                Color = color;
-                lbl = new Label();
-                lbl.HorizontalAlignment = HorizontalAlignment.Left;
-                lbl.VerticalAlignment = VerticalAlignment.Top;
-                lbl.Content = l;
-                Position = p;
-                g.Children.Add(lbl);
-            }
-            Point _pt;
-            public Point Position
-            {
-                get
-                {
-                    return _pt;
-                }
-                set
-                {
-                    _pt = value;
-                    lbl.Margin = new Thickness(_pt.X, _pt.Y, 0, 0);
-                }
-            }
-            public uint Color;
-            public Label lbl;
-        }
+        private VirtualKeyboard _virtualKeyboard;
+        private SimulatedAnnealing _evolvingAlgorithm;
 
         public MainWindow()
         {
             InitializeComponent();
-            _wb = new WriteableBitmap(1280, 600, 96, 96, PixelFormats.Bgra32, null);
-            this.Img.Source = _wb;
+            _samplesSource = new DefaultLocalSamplesSource();
+
             String[] keyPlacement = {
             "1234567890","azertyuiop","qsdfghjklm","wxcvbn,;:!"," "
                                     };
-            Letters = new List<Letter>();
-            Random r = new Random();
-            Point p = new Point(0, 0);
-            int yStep = _wb.PixelHeight / keyPlacement.Length;
-            foreach (var s in keyPlacement)
+            _virtualKeyboard = new EvolvingKeyboard.Keyboard.VirtualKeyboard(1280, 720, keyPlacement, (letter, point) =>
             {
-                int xStep = _wb.PixelWidth / s.Length;
-                p.X = 0;
-                foreach (var l in s)
-                {
-                    Letters.Add(new Letter(new Point(p.X, p.Y), (uint)r.Next(0, Int32.MaxValue), this.KeyboardGrid, l.ToString()));
-                    p.X += xStep;
-                }
-                p.Y += yStep;
-            }
+                _simulateKeyPress(letter.lbl.Content.ToString()[0]); // TODO beurk
+            });
 
-            this.Topmost = true;
+            this.KeyboardGrid.Children.Add(_virtualKeyboard);
+            _evolvingAlgorithm = new SimulatedAnnealing();
+            //_evolvingAlgorithm.Ev
+            //_wb = new WriteableBitmap(1280, 600, 96, 96, PixelFormats.Bgra32, null);
+            //this.Img.Source = _wb;
 
-            //drawKeyboard();
-
-            _samplesSource = new DefaultLocalSamplesSource();
 
             ApplyNeighbors(GenerateNeighbors());
             drawKeyboard();

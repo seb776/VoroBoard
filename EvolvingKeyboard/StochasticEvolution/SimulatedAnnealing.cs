@@ -8,6 +8,8 @@ namespace EvolvingKeyboard.StochasticEvolution
 {
     public class SimulatedAnnealing
     {
-
+        double lastScore = 0.0;
+        double currentScore = 0.0;
+        double temperature = 150.0;
     }
 }

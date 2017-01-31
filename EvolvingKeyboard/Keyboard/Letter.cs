@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EvolvingKeyboard.StochasticEvolution;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Windows.Controls;
 
 namespace EvolvingKeyboard.Keyboard
 {
-    public class Letter
+    public class Letter : IGene
     {
         public Letter(Point p, uint color, Grid g, String l)
         {
@@ -35,6 +36,21 @@ namespace EvolvingKeyboard.Keyboard
         }
         public uint Color;
         public Label lbl;
+
+        public bool Equals(Letter gene)
+        {
+            return this.lbl.Content.Equals(gene.lbl.Content);
+        }
+
+        public IGene GenerateRandom()
+        {
+            return this;
+        }
+
+        public void Mutate(float coef)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

@@ -59,6 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Keyboard\Letter.cs" />
+    <Compile Include="Keyboard\VirtualKeyboard.cs" />
     <Compile Include="StochasticEvolution\IGene.cs" />
     <Compile Include="StochasticEvolution\Individual.cs" />
     <Compile Include="StochasticEvolution\SimulatedAnnealing.cs" />
