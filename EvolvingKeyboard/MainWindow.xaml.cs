@@ -47,15 +47,20 @@ namespace EvolvingKeyboard
             _virtualKeyboard = new EvolvingKeyboard.Keyboard.VirtualKeyboard(1280, 720, keyPlacement, (letter, point) =>
             {
                 _simulateKeyPress(letter.lbl.Content.ToString()[0]); // TODO beurk
+                
             });
-
+            List<Vertex> vertices = new List<Vertex>();
+            vertices.Add(new Vertex(0,0));
+            var test = MIConvexHull.VoronoiMesh.Create<Vertex, VoronoiCell>(vertices);
+            test.Vertices.ElementAt(0).
             this.KeyboardGrid.Children.Add(_virtualKeyboard);
             _evolvingAlgorithm = new SimulatedAnnealing();
             //_evolvingAlgorithm.Ev
             //_wb = new WriteableBitmap(1280, 600, 96, 96, PixelFormats.Bgra32, null);
             //this.Img.Source = _wb;
 
-
+            Esri.ArcGISRuntime.
+            Esri.ArcGISRuntime.Geometry.PartCollection test;
             ApplyNeighbors(GenerateNeighbors());
             drawKeyboard();
             this.DemoField.Content = _samplesSource.GetCurrentSample();
